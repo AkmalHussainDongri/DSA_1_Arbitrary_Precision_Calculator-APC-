@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stddef.h>
 
 
 #define SUCCESS		1
