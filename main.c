@@ -1,4 +1,4 @@
-'''
+/*
 First Project of DSA Module - APC(Arbitrary Precision Calculator)
 Author: D. Akmal Hussain
 Date: 20/11/26
@@ -6,10 +6,12 @@ Project requirement: Linked Lists & CLA
 A command-line calculator in C that performs `+`, `-`, `x` and `/` on integers of **any length**, beyond the range of `int` or `long long`.
 Each number is stored as a **doubly linked list with one digit per node**. The sign is stored separately.
 123  ->  head -> [1] <-> [2] <-> [3] <- tail
-'''
+*/
 
 #include "apc.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include<stddef.h>
 int main(int argc, char *argv[])
 {
 	if(cla_validation(argc, argv) == FAILURE)
@@ -59,8 +61,8 @@ int main(int argc, char *argv[])
 		if(sign1 == sign2)
 		{
 			addition(tail1, tail2, &headR, &tailR);
-			if(sign1 < 0)
-				printf("-");
+			if (sign1 < 0 && headR != NULL && headR->data != 0)
+    			printf("-");
 		}
 		else
 		{
@@ -73,13 +75,13 @@ int main(int argc, char *argv[])
 			else if(cmp == OPERAND1)
 			{
 				subtraction(tail1, tail2, &headR, &tailR);
-				if(sign1 < 0 && headR->data != 0)
+				if (sign1 < 0 && headR != NULL && headR->data != 0)
 					printf("-");
 			}
 			else
 			{
 				subtraction(tail2, tail1, &headR, &tailR);
-				if(sign2 < 0 && headR->data != 0)
+				if (sign2 < 0 && headR != NULL && headR->data != 0)
 					printf("-");
 			}
 		}
@@ -90,8 +92,8 @@ int main(int argc, char *argv[])
 	case 'x':
 	case 'X':
 		multiplication(tail1, tail2, &headR, &tailR);
-		if(sign1 != sign2 && headR->data != 0)
-			printf("-");
+		if (sign1 < 0 && headR != NULL && headR->data != 0)
+    		printf("-");
 		print_result(headR);
 	    break;
 
@@ -102,8 +104,8 @@ int main(int argc, char *argv[])
 			break;
 		}
 		division(head1, head2, &headR, &tailR);
-		if(sign1 != sign2 && headR->data != 0)
-			printf("-");
+		if (sign1 < 0 && headR != NULL && headR->data != 0)
+    			printf("-");
 		print_result(headR); 
 
 	    break;
